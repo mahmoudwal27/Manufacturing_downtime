@@ -45,50 +45,51 @@
 </body>
 </html>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Manufacturing Downtime Analysis</title>
-</head>
-<body>
+import tkinter as tk
+from tkinter import messagebox
+import pandas as pd
+import matplotlib.pyplot as plt
 
-  <h1>Manufacturing Downtime Analysis</h1>
+# Sample function to analyze data (placeholder)
+def analyze_data():
+    try:
+        # Load the dataset (replace with your actual dataset path)
+        data = pd.read_csv("downtime_data.csv")
+        
+        # Simple analysis (example: downtime per machine)
+        downtime_per_machine = data.groupby('machine_id')['resolution_time'].sum()
+        
+        # Display results in the GUI
+        result_text.set(downtime_per_machine.to_string())
+        
+        # Optionally, plot the data
+        downtime_per_machine.plot(kind='bar', title="Downtime per Machine")
+        plt.show()
+    
+    except Exception as e:
+        messagebox.showerror("Error", f"An error occurred: {e}")
 
-  <div class="section">
-    <h2>Overview</h2>
-    <p>
-      This project focuses on analyzing manufacturing downtime to identify bottlenecks, inefficiencies, and their root causes. Using a combination of <strong>SQL</strong>, <strong>Python</strong>, and <strong>Power BI</strong>, the aim is to provide actionable, data-driven insights to optimize operational efficiency and reduce production delays.
-    </p>
-  </div>
+# Create main window
+root = tk.Tk()
+root.title("Manufacturing Downtime Analysis")
+root.geometry("600x400")
 
-  <div class="section">
-    <h2>Data Used</h2>
-    <p>
-      The dataset includes information on production line activity, machine failures, shift details, and the reasons for downtime.<br>
-      Key fields in the dataset: <code>timestamp</code>, <code>machine_id</code>, <code>failure_type</code>, <code>resolution_time</code>.
-    </p>
-  </div>
+# Header
+header_label = tk.Label(root, text="Manufacturing Downtime Analysis", font=("Arial", 18))
+header_label.pack(pady=10)
 
-  <div class="section">
-    <h2>Tools & Techniques</h2>
-    <ul>
-      <li><strong>SQL:</strong> Used for data extraction, transformation, and preprocessing.</li>
-      <li><strong>Python (pandas, Matplotlib):</strong> Conducted Exploratory Data Analysis (EDA) and created visualizations for pattern recognition.</li>
-      <li><strong>Power BI:</strong> Developed interactive dashboards to visualize trends and provide insights into key performance indicators.</li>
-    </ul>
-  </div>
+# Instructions
+instructions_label = tk.Label(root, text="Click the button to analyze downtime data", font=("Arial", 12))
+instructions_label.pack(pady=5)
 
-  <div class="section">
-    <h2>Key Findings</h2>
-    <ul>
-      <li>Identified the most common causes of downtime and their direct impact on production efficiency.</li>
-      <li>Analyzed time-based trends to determine peak downtime periods and their correlations with production cycles.</li>
-      <li>Proposed solutions to minimize unplanned downtime, including recommendations for better inventory management and proactive maintenance strategies.</li>
-    </ul>
-  </div>
+# Button to trigger analysis
+analyze_button = tk.Button(root, text="Analyze Data", font=("Arial", 14), command=analyze_data)
+analyze_button.pack(pady=20)
 
-</body>
-</html>
+# Text to display analysis results
+result_text = tk.StringVar()
+result_label = tk.Label(root, textvariable=result_text, font=("Arial", 10), justify="left")
+result_label.pack(pady=10)
 
+# Start the GUI event loop
+root.mainloop()
