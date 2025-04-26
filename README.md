@@ -37,7 +37,7 @@
     <h2>Key Findings</h2>
     <ul>
       <li>Identified top reasons for downtime and their impact on production.</li>
-      <li>Analyzed time-based trends to spot peak downtime periods.</li>
+      <li>Analyzed time based trends to spot peak downtime periods.</li>
       <li>Recommended solutions to reduce unplanned downtime and improve efficiency.</li>
     </ul>
   </div>
